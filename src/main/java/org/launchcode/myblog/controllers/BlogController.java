@@ -1,6 +1,7 @@
 package org.launchcode.myblog.controllers;
 
 import org.launchcode.myblog.data.BlogData;
+import org.launchcode.myblog.data.UserData;
 import org.launchcode.myblog.models.Blog;
 import org.launchcode.myblog.models.Status;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class BlogController {
     @Autowired
     private BlogData blogData;
 
+    @Autowired
+    private UserData userData;
+
     @GetMapping("")
     public String viewEntries(Model model){
         model.addAttribute("title", "Mike's Blog");
@@ -32,6 +36,7 @@ public class BlogController {
     public String renderNewPost(Model model){
         model.addAttribute(new Blog());
         model.addAttribute("statuses", Status.values());
+        model.addAttribute("users", userData.findAll());
         return "blog/newPost";
     }
 
@@ -40,6 +45,7 @@ public class BlogController {
 
         if(errors.hasErrors()){
             model.addAttribute("statuses", Status.values());
+            model.addAttribute("users", userData.findAll());
             return "blog/newPost";
         }
         newBlog.setDate(LocalDate.now());
