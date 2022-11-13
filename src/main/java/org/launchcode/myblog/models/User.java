@@ -1,8 +1,6 @@
 package org.launchcode.myblog.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class User {
@@ -13,8 +11,6 @@ public class User {
 
     private String username;
 
-    @OneToMany(mappedBy = "user")
-    private List<Blog> posts = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -24,7 +20,7 @@ public class User {
         this.username = username;
     }
 
-    public List<Blog> getPosts() {
-        return posts;
+    public int getId() {
+        return id;
     }
 }
