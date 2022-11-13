@@ -1,10 +1,8 @@
 package org.launchcode.myblog.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -20,6 +18,10 @@ public class Blog {
     private String content;
     private LocalDate date;
     private Status status;
+
+    @ManyToOne
+    @NotNull(message = "A blog post must have a user.")
+    private User user;
 
     public String getTitle() {
         return title;
@@ -55,5 +57,13 @@ public class Blog {
 
     public int getId(){
         return id;
+    }
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
