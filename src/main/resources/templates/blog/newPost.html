@@ -20,6 +20,14 @@
                       th:value="${status}" th:text="${status.display}"
               ></option>
           </select>
+          <br>
+          <select th:field="${blog.user}">
+              <option th:each="user:${users}"
+                      th:value="${user.id}" th:text="${user.username}">
+              </option>
+          </select>
+          <p class = 'error' th:errors="${blog.user}"></p>
+
       </label>
     <button>Submit</button>
   </form>
