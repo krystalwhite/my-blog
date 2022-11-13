@@ -8,7 +8,7 @@
 <header th:replace="fragments :: navBar"></header>
 <ul>
 <th:block th:each="user: ${users}">
-    <strong><li th:text="${user.username}"></li></strong>
+    <li><a th:text="${user.username}" th:href=" '/blog/user/' + ${user.id}"></a></li>
 </th:block>
 </ul>
 <form method="post">
