@@ -27,4 +27,8 @@ public class User {
     public List<Blog> getPosts() {
         return posts;
     }
+
+    public int getId() {
+        return id;
+    }
 }
